@@ -29,13 +29,16 @@ describe('API de tareas', () => {
     });
   });
 
-  test('impide crear una tarea sin título', async () => {
+  test.each([
+    ['vacío', ''],
+    ['formado solo por espacios', '   ']
+  ])('impide crear una tarea con un título %s', async (caseName, title) => {
     const response = await request(app)
       .post('/api/tasks')
-      .send({ title: '   ', description: 'No debe guardarse' });
+      .send({ title, description: 'No debe guardarse' });
 
     expect(response.status).toBe(400);
-    expect(response.body.error).toBe('El título es obligatorio.');
+    expect(response.body.error).toBe('El título de la tarea es obligatorio.');
 
     const listResponse = await request(app).get('/api/tasks');
     expect(listResponse.body).toHaveLength(0);

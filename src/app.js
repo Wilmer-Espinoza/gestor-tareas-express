@@ -29,7 +29,7 @@ function createApp(store = createTaskStore()) {
     const status = req.body.status || 'Pendiente';
 
     if (!title) {
-      return res.status(400).json({ error: 'El título es obligatorio.' });
+      return res.status(400).json({ error: 'El título de la tarea es obligatorio.' });
     }
 
     if (!VALID_STATUSES.includes(status)) {
@@ -51,7 +51,7 @@ function createApp(store = createTaskStore()) {
     }
 
     if (!title) {
-      return res.status(400).json({ error: 'El título es obligatorio.' });
+      return res.status(400).json({ error: 'El título de la tarea es obligatorio.' });
     }
 
     if (!VALID_STATUSES.includes(status)) {
