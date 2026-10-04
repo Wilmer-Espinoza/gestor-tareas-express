@@ -99,7 +99,7 @@ form.addEventListener('submit', async (event) => {
   const editingId = Number(taskIdInput.value);
 
   if (!title) {
-    formError.textContent = 'El título es obligatorio.';
+    formError.textContent = 'El título de la tarea es obligatorio.';
     titleInput.focus();
     return;
   }
