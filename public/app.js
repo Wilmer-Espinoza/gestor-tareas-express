@@ -169,5 +169,5 @@ taskList.addEventListener('click', async (event) => {
 cancelEditButton.addEventListener('click', resetForm);
 taskFilter.addEventListener('change', renderTasks);
 taskSearch.addEventListener('input', renderTasks);
-
+git checkout main
 loadTasks();
