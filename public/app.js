@@ -13,6 +13,7 @@ const taskTemplate = document.querySelector('#task-template');
 const emptyState = document.querySelector('#empty-state');
 const pendingCount = document.querySelector('#pending-count');
 const taskFilter = document.querySelector('#task-filter');
+const taskSearch = document.querySelector('#task-search');
 
 let tasks = [];
 
@@ -41,9 +42,12 @@ async function loadTasks() {
 
 function renderTasks() {
   const selectedFilter = taskFilter.value;
-  const visibleTasks = selectedFilter === 'Todas'
-    ? tasks
-    : tasks.filter((task) => task.status === selectedFilter);
+  const searchText = taskSearch.value.trim().toLocaleLowerCase('es');
+  const visibleTasks = tasks.filter((task) => {
+    const matchesStatus = selectedFilter === 'Todas' || task.status === selectedFilter;
+    const matchesTitle = task.title.toLocaleLowerCase('es').includes(searchText);
+    return matchesStatus && matchesTitle;
+  });
 
   taskList.replaceChildren();
   emptyState.classList.toggle('hidden', visibleTasks.length > 0);
@@ -164,5 +168,6 @@ taskList.addEventListener('click', async (event) => {
 
 cancelEditButton.addEventListener('click', resetForm);
 taskFilter.addEventListener('change', renderTasks);
+taskSearch.addEventListener('input', renderTasks);
 
 loadTasks();
