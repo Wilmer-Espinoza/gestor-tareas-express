@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aplicación CRUD para gestionar tareas">
+    <title>Gestor de Tareas</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="container">
+      <header class="page-header">
+        <div>
+          <p class="eyebrow">Organiza tu día</p>
+          <h1>Gestor de Tareas</h1>
+          <p class="subtitle">Crea, actualiza y completa tus pendientes en un solo lugar.</p>
+        </div>
+        <div class="task-counter" aria-live="polite">
+          <strong id="pending-count">0</strong>
+          <span>pendientes</span>
+        </div>
+      </header>
+
+      <section class="card form-card" aria-labelledby="form-title">
+        <div class="section-heading">
+          <h2 id="form-title">Nueva tarea</h2>
+          <button id="cancel-edit" class="button button-ghost hidden" type="button">Cancelar edición</button>
+        </div>
+
+        <form id="task-form" novalidate>
+          <input id="task-id" type="hidden">
+          <div class="form-grid">
+            <label>
+              Título <span aria-hidden="true">*</span>
+              <input id="title" name="title" type="text" maxlength="100" placeholder="Ej. Preparar informe" required>
+            </label>
+            <label>
+              Descripción
+              <textarea id="description" name="description" rows="3" maxlength="500" placeholder="Agrega detalles de la tarea"></textarea>
+            </label>
+          </div>
+          <p id="form-error" class="error-message" role="alert"></p>
+          <button id="submit-button" class="button button-primary" type="submit">Agregar tarea</button>
+        </form>
+      </section>
+
+      <section class="tasks-section" aria-labelledby="tasks-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Tu lista</p>
+            <h2 id="tasks-title">Tareas</h2>
+          </div>
+          <select id="task-filter" aria-label="Filtrar tareas">
+            <option value="Todas">Todas</option>
+            <option value="Pendiente">Pendientes</option>
+            <option value="Completada">Completadas</option>
+          </select>
+        </div>
+
+        <div id="task-list" class="task-list" aria-live="polite"></div>
+        <div id="empty-state" class="empty-state hidden">
+          <span aria-hidden="true">✓</span>
+          <h3>No hay tareas aquí</h3>
+          <p>Agrega una nueva tarea para comenzar.</p>
+        </div>
+      </section>
+    </main>
+
+    <template id="task-template">
+      <article class="task-card">
+        <button class="status-toggle" type="button" aria-label="Cambiar estado de la tarea">
+          <span aria-hidden="true">✓</span>
+        </button>
+        <div class="task-content">
+          <div class="task-title-row">
+            <h3></h3>
+            <span class="status-badge"></span>
+          </div>
+          <p class="task-description"></p>
+        </div>
+        <div class="task-actions">
+          <button class="button button-secondary edit-button" type="button">Editar</button>
+          <button class="button button-danger delete-button" type="button">Eliminar</button>
+        </div>
+      </article>
+    </template>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
