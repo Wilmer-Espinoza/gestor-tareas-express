@@ -220,6 +220,27 @@ select {
   margin-bottom: 1.15rem;
 }
 
+.search-field {
+  position: relative;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.search-field span {
+  position: absolute;
+  top: 50%;
+  left: 0.95rem;
+  color: var(--muted);
+  font-size: 1.15rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.search-field input {
+  padding-left: 2.65rem;
+  background: var(--surface);
+}
+
 .task-list {
   display: grid;
   gap: 0.85rem;
